@@ -55,12 +55,15 @@ RUN python3 -m venv /opt/venv \
 # Clone the Xenia repository
 RUN git clone https://github.com/xenia-project/xenia.git /opt/xenia
 
+# Initialize and update submodules
+RUN cd /opt/xenia && git submodule update --init --recursive
+
 # Set working directory to Xenia
 WORKDIR /opt/xenia
 
 # Setup and build Xenia
 RUN ./xb setup \
-    && ./xb build
+    && ./xb build || (cat build/Debug/*.log && exit 1)
 
 # Install noVNC
 RUN git clone https://github.com/novnc/noVNC.git /opt/novnc \
