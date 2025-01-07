@@ -48,6 +48,17 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Update package lists and install additional dependencies for Xenia
+RUN apt-get update && apt-get install -y \
+    libavcodec-dev \
+    libavformat-dev \
+    libavutil-dev \
+    libswscale-dev \
+    libfreetype6-dev \
+    libfontconfig1-dev \
+    libx264-dev \
+    libx265-dev
+
 # Create a virtual environment and install Flask and websockify
 RUN python3 -m venv /opt/venv \
     && /opt/venv/bin/pip install flask websockify
