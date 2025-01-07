@@ -13,8 +13,8 @@ RUN apt-get update && apt-get install -y \
     cmake \
     python3 \
     python3-pip \
-    clang-9 \
-    llvm-9 \
+    clang \
+    llvm \
     libsdl2-dev \
     libglew-dev \
     libxcb1-dev \
@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y \
     liblz4-dev \
     libx11-dev \
     libiberty-dev \
-    libunwind-dev \
+    libunwind-14-dev \
     libc++-dev \
     libc++abi-dev \
     x11vnc \
