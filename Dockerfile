@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     cmake \
     python3 \
     python3-pip \
+    python3-venv \
     clang \
     llvm \
     libsdl2-dev \
@@ -47,8 +48,9 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Flask and other Python dependencies
-RUN pip3 install flask websockify
+# Create a virtual environment and install Flask and websockify
+RUN python3 -m venv /opt/venv \
+    && /opt/venv/bin/pip install flask websockify
 
 # Clone the Xenia repository
 RUN git clone https://github.com/xenia-project/xenia.git /opt/xenia
